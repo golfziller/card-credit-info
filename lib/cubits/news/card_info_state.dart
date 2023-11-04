@@ -7,13 +7,14 @@ part 'card_info_state.g.dart';
 
 @freezed
 class CardInfoState with _$CardInfoState {
-  const factory CardInfoState(
-      {List<CardData>? listCardInfo,
-      @Default(0) int indexCurrentTab,
-      CardData? cardInfoSelected,
-      @Default([]) List<DdlData> optionPeriod,
-      String? periodSelected,
-      @Default(false) bool isLoadingBilled}) = _CardInfoState;
+  const factory CardInfoState({
+    List<CardData>? listCardInfo,
+    @Default(0) int indexCurrentTab,
+    CardData? cardInfoSelected,
+    @Default([]) List<DdlData> optionPeriod,
+    String? periodSelected,
+    @Default(false) bool isLoadingBilled,
+  }) = _CardInfoState;
 
   factory CardInfoState.fromJson(Map<String, Object?> json) =>
       _$CardInfoStateFromJson(json);

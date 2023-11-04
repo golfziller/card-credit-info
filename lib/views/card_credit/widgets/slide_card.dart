@@ -15,33 +15,29 @@ class SlideCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CardInfoCubit, CardInfoState>(
       builder: (context, state) {
-        return state.listCardInfo == null
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : CarouselSlider(
-                options: CarouselOptions(
-                    viewportFraction: 1,
-                    initialPage: 0,
-                    enableInfiniteScroll: false,
-                    onPageChanged: (int index, reason) {
-                      Modular.get<CardInfoCubit>().onCardSlideChange(index);
-                    }),
-                items: state.listCardInfo!.map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(i.card.cardImageUrl),
-                              fit: BoxFit.contain),
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
-              );
+        return CarouselSlider(
+          options: CarouselOptions(
+              viewportFraction: 1,
+              initialPage: 0,
+              enableInfiniteScroll: false,
+              onPageChanged: (int index, reason) {
+                Modular.get<CardInfoCubit>().onCardSlideChange(index);
+              }),
+          items: state.listCardInfo!.map((i) {
+            return Builder(
+              builder: (BuildContext context) {
+                return Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(i.card.cardImageUrl),
+                        fit: BoxFit.contain),
+                  ),
+                );
+              },
+            );
+          }).toList(),
+        );
       },
     );
   }
